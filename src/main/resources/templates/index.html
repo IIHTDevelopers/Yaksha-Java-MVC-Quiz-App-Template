@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Bootstrap CSS -->
+	<title>Home Page</title>
+	<script>
+        function ValidationEvent() {
+            var firstName = document.getElementById("username").value;
+            if (firstName == '' || firstName.length < 3 || firstName.length > 50) {
+                alert("Username should be 3 to 50 letters");
+                return false;
+            }
+            return true;
+        }
+  </script>
+</head>
+<body>
+	
+	<!-- Importing NavBar -->
+	<div th:insert="navbar.html :: navbar"></div>
+
+	<!-- Main Container Start -->
+	<div class="main-container container py-5 px-4">
+
+		<div class="text-box">
+			<h1 class="mb-5 text-center">Spring Boot Quiz App</h1>
+			<form class="card bg-dark py-5 px-4" action="/quiz" method="POST" onsubmit="return ValidationEvent()">
+				<p>Enter Your Name</p>
+				<input type="text" name="username" id="username" />
+				<p class="text-danger warning" th:if="${warning}" th:text="${warning}"></p>
+				<button type="submit" class="btn btn-warning">Start Quiz</button>
+			</form>
+		</div>
+	</div>
+	
+	<!-- Importing Footer -->
+	<div th:insert="footer.html :: footer"></div>
+	
+	<!-- Bootstrap JS -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
